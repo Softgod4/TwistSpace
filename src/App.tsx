@@ -6,18 +6,9 @@ interface AppProps {}
 
 const App: FC<AppProps> = ({}) => {
   return (
-    <div>
-      <p
-        style={{
-          fontSize: 51,
-        }}
-      >
-        Marat gay
-      </p>
-      <DefaultCanvas>
-        <RenderModel />
-      </DefaultCanvas>
-    </div>
+    <DefaultCanvas>
+      <RenderModel />
+    </DefaultCanvas>
   );
 };
 

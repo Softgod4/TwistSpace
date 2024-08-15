@@ -7,7 +7,14 @@ interface RenderModelProps {
 
 const DefaultCanvas: FC<RenderModelProps> = ({ children }) => {
   return (
-    <div style={{ height: "100vh" }}>
+    <div
+      style={{
+        height: "90vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Canvas camera={{ position: [2, 1, 2], fov: 90, near: 2.3, far: 3.5 }}>
         {children}
       </Canvas>
