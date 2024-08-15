@@ -15,10 +15,9 @@ const DefaultCanvas: FC<RenderModelProps> = ({ children }) => {
         alignItems: "center",
       }}
     >
-      <Canvas camera={{ position: [2, 1, 2], fov: 90, near: 2.3, far: 3.5 }}>
+      <Canvas camera={{ position: [0, 0, 3] }}>
         {children}
       </Canvas>
-      ;
     </div>
   );
 };

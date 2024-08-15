@@ -1,37 +1,34 @@
-import { FC, useRef } from "react";
-import { Mesh } from "three";
-import { useFrame } from "@react-three/fiber";
-import { CameraShake } from "@react-three/drei";
+import { FC, MutableRefObject, useRef } from "react";
+import { CameraHelper, Mesh, Object3D, Object3DEventMap } from "three";
+import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 
 interface RenderModelProps {}
 
+// i dont understand how to typify this..
+type Falsy = any;
+type BoxGeometry = any;
+
 const RenderModel: FC<RenderModelProps> = ({}) => {
   const myMesh = useRef<Mesh>(null!);
-
-//   useFrame(({ clock }) => {
-//     if (myMesh.current) {
-//       myMesh.current.rotation.x = clock.getElapsedTime();
-//       myMesh.current.rotation.y = clock.getElapsedTime();
-//     }
-//   });
+  const camera: MutableRefObject<Object3D<Object3DEventMap>> | Falsy =
+    useRef(null);
+  useHelper(camera, CameraHelper);
+  const boxRef: React.Ref<BoxGeometry> | undefined = useRef();
 
   return (
     <>
-      <CameraShake
-        maxYaw={0.1}
-        maxPitch={0.1}
-        maxRoll={0.1}
-        yawFrequency={0.1}
-        pitchFrequency={0.1}
-        rollFrequency={0.1}
-        intensity={1}
-        decayRate={0.65}
-      />
+      <PerspectiveCamera ref={camera} />
       <ambientLight />
-      <pointLight position={[1, 5, 5]} intensity={2.5} />
+      <OrbitControls
+        minAzimuthAngle={-Math.PI / 4}
+        minPolarAngle={Math.PI / 6}
+        maxPolarAngle={Math.PI - Math.PI / 6}
+        enableZoom={false}
+      />
+      <pointLight position={[1, 2, 5]} intensity={2.5} />
       <mesh position={[0, 0, 0]} ref={myMesh}>
-        <boxGeometry/>
-        <meshNormalMaterial opacity={0.8}/>
+        <boxGeometry ref={boxRef} />
+        <meshBasicMaterial color={"lime"} />
       </mesh>
     </>
   );
