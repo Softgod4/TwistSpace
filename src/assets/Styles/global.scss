@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 @import "../Styles/colors.scss";
 @import "../Styles/mixins";
+
+// tailwind css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body,
@@ -96,7 +102,7 @@ html {
 }
 
 body {
-  font-family: "Rubik", sans-serif;
+  font-family: "Anek Devanagari", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-size: 12px;
@@ -161,4 +167,8 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+.panel-gradient {
+  background: linear-gradient(110deg,#333 .06%,#222);
 }

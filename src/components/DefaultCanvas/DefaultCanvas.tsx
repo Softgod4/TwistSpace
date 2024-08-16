@@ -7,17 +7,8 @@ interface RenderModelProps {
 
 const DefaultCanvas: FC<RenderModelProps> = ({ children }) => {
   return (
-    <div
-      style={{
-        height: "90vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Canvas camera={{ position: [0, 0, 3] }}>
-        {children}
-      </Canvas>
+    <div className="h-svh flex justify-center items-center">
+      <Canvas camera={{ position: [0, 0, 3] }}>{children}</Canvas>
     </div>
   );
 };

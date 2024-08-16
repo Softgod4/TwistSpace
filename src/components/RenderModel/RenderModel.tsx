@@ -1,6 +1,11 @@
 import { FC, MutableRefObject, useRef } from "react";
 import { CameraHelper, Mesh, Object3D, Object3DEventMap } from "three";
-import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
+import {
+  CameraShake,
+  OrbitControls,
+  PerspectiveCamera,
+  useHelper,
+} from "@react-three/drei";
 
 interface RenderModelProps {}
 
@@ -30,6 +35,7 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         <boxGeometry ref={boxRef} />
         <meshBasicMaterial color={"lime"} />
       </mesh>
+      <CameraShake />
     </>
   );
 };
