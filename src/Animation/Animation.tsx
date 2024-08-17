@@ -13,7 +13,7 @@ interface AnimateTextProps extends AnimateProps {
 
 export const AnimateText: FC<AnimateTextProps> = (props) => {
   const { text, className, as: Component = "span" } = props;
-  const textArr = text.split("");
+  const textArr = text.split(" ");
 
   return (
     <Component className={className + " select-none cursor-default"}>
@@ -22,10 +22,10 @@ export const AnimateText: FC<AnimateTextProps> = (props) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: 0.20,
+            duration: 0.30,
             delay: i / 15,
           }}
-          className="mr-[-3.5px]"
+          className=""
           key={i}
         >
           {el}{" "}

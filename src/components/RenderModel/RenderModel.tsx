@@ -22,7 +22,7 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
 
   return (
     <>
-      <PerspectiveCamera ref={camera} />
+      {/* <PerspectiveCamera ref={camera} /> */}
       <ambientLight />
       <OrbitControls
         minAzimuthAngle={-Math.PI / 4}
@@ -35,7 +35,7 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         <boxGeometry ref={boxRef} />
         <meshBasicMaterial color={"lime"} />
       </mesh>
-      <CameraShake />
+      {/* <CameraShake /> */}
     </>
   );
 };
