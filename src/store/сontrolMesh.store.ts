@@ -43,3 +43,16 @@ export const usePerspectiveCameraControl =
           !state.isPerspectiveCameraControlEnabled,
       })),
   }));
+
+// ----------------
+
+// Стор для управления возможностью зума
+type ZoomControlStore = {
+  isZoomEnabled: boolean;
+  toggleZoom: () => void;
+};
+
+export const useZoomControl = create<ZoomControlStore>((set) => ({
+  isZoomEnabled: true,
+  toggleZoom: () => set((state) => ({ isZoomEnabled: !state.isZoomEnabled })),
+}));

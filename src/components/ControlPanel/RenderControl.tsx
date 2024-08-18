@@ -2,6 +2,7 @@ import { FC } from "react";
 import Checkbox from "../Checkbox/Checkbox";
 import {
   useCameraControl,
+  useLightControl,
   usePerspectiveCameraControl,
 } from "../../store/сontrolMesh.store";
 
@@ -11,9 +12,10 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
   const { isCameraControlEnabled, toggleCameraControl } = useCameraControl();
   const { isPerspectiveCameraControlEnabled, togglePerspectiveCameraControl } =
     usePerspectiveCameraControl();
+  const { toggleLight, isLightEnabled } = useLightControl();
 
   return (
-    <div className="w-full mt-8">
+    <div className="w-full border-t border-solid border-[#333] hover:border-[#444] pt-4">
       <Checkbox
         id="lightControl"
         title="Enable camera rotation"
@@ -30,6 +32,15 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
         onChange={() => {
           togglePerspectiveCameraControl();
           console.log(isPerspectiveCameraControlEnabled);
+        }}
+      />
+      <Checkbox
+        id="stageLight"
+        title="Enable lightning in stage"
+        description="turns on the stage lights to illuminate the main subject"
+        onChange={() => {
+          toggleLight();
+          console.log(isLightEnabled);
         }}
       />
     </div>

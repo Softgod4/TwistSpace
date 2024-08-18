@@ -14,12 +14,12 @@ const App: FC<AppProps> = ({}) => {
         <Route
           path="/"
           component={() => (
-            <>
+            <div>
               <ControlPanel />
               <DefaultCanvas>
                 <RenderModel />
               </DefaultCanvas>
-            </>
+            </div>
           )}
         />
       </Switch>

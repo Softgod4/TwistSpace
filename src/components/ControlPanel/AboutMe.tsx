@@ -3,15 +3,15 @@ import { FC, useState } from "react";
 import { AnimateText } from "../../Animation/Animation";
 
 interface AboutMeProps {
-  name: string;
+  name?: string;
   description: string;
 }
 
-const AboutMe: FC<AboutMeProps> = ({ name, description }) => {
+const AboutMe: FC<AboutMeProps> = ({ description }) => {
   const [hoverImage, setHoverImage] = useState(false);
 
   return (
-    <div className="flex justify-start items-center">
+    <div className="flex justify-start items-center pb-5">
       {/* <img
           src={mouseEnter ? "/github-logo.webp" : "/avatar-github.jpeg"}
           alt="avatar"
