@@ -23,7 +23,7 @@ const App: FC<AppProps> = ({}) => {
           )}
         />
       </Switch>
-      <Route path="/:rest*" component={ErrorPage} />
+      <Route path="/error" component={ErrorPage} />
     </>
   );
 };

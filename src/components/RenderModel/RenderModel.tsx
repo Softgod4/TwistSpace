@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { CameraHelper, Mesh } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 import {
@@ -8,10 +8,12 @@ import {
 } from "../../store/сontrolMesh.store";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { useUploadUrl } from "../../store/UploadUrl.store";
 interface RenderModelProps {}
 
 // i dont understand how to typify this..
 type BoxGeometry = any;
+type Scene = any;
 
 const RenderModel: FC<RenderModelProps> = ({}) => {
   const myMesh = useRef<Mesh>(null!);
@@ -20,8 +22,22 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
   const { isCameraControlEnabled } = useCameraControl();
   const { isPerspectiveCameraControlEnabled } = usePerspectiveCameraControl();
   const { isLightEnabled } = useLightControl();
+  const [model, setModel] = useState<Scene | null>(null);
+  const { StateUrl } = useUploadUrl();
 
-  const model = useLoader(GLTFLoader, "/ganyu.glb");
+  // Загрузка начальной модели
+  const defaultModel = useLoader(GLTFLoader, "/ganyu.glb");
+
+  useEffect(() => {
+    if (StateUrl) {
+      const loader = new GLTFLoader();
+      loader.load(StateUrl, (gltf) => {
+        setModel(gltf.scene);
+      });
+    }
+  }, [StateUrl]);
+
+  const currentModel = model || defaultModel.scene;
 
   return (
     <>
@@ -46,9 +62,13 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
       ) : (
         ""
       )}
-      <mesh position={[0, 0, 0]} ref={myMesh}>
-        <primitive object={model.scene} scale={2} position-y={-2} />
-      </mesh>
+      {currentModel ? (
+        <mesh>
+          <primitive object={currentModel} scale={2} position-y={-2} />
+        </mesh>
+      ) : (
+        <p className="w-full h-full text-2xl text-white">Loading model...</p>
+      )}
     </>
   );
 };
