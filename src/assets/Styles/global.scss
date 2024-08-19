@@ -107,6 +107,9 @@ body {
   font-weight: 400;
   font-size: 12px;
   background: black;
+  cursor: default;
+  user-select: auto;
+  -webkit-user-select: auto;
   @include background();
 }
 

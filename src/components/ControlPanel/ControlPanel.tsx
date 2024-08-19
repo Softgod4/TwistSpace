@@ -7,6 +7,7 @@ import {
   useMotionTemplate,
   useMotionValue,
 } from "framer-motion";
+import DragAndDrop from "../DragAndDrop/DragAndDrop";
 interface ControlPanelProps {}
 
 const ControlPanel: FC<ControlPanelProps> = ({}) => {
@@ -28,13 +29,13 @@ const ControlPanel: FC<ControlPanelProps> = ({}) => {
 
   return (
     <motion.div
-      className="absolute left-0 top-0 z-50 p-6 max-h-[380px] rounded-xl mt-4 ml-4 panel-gradient text-white border border-solid border-[#333] hover:border-[#444] shadow hover:shadow-md transition-all ease-in delay-75 select-none"
+      className="absolute left-0 top-0 z-50 p-6 max-h-[420px] rounded-xl mt-4 ml-4 panel-gradient text-white border border-solid border-[#333] hover:border-[#444] shadow hover:shadow-md transition-all ease-in delay-75 select-none"
       style={{
         background,
       }}
       exit={{
         opacity: 0,
-        filter: "blur(15px)",
+        filter: "blur(1px)",
         transition: { ease: "easeIn", duration: 1.2 },
       }}
       initial={{
@@ -43,7 +44,7 @@ const ControlPanel: FC<ControlPanelProps> = ({}) => {
       }}
       animate={{
         opacity: 1,
-        filter: "blur(0px)",
+        filter: "blur(0px)", // Переход к нулевому размытию без отрицательных значений
         transition: { type: "spring", duration: 2 },
       }}
     >
@@ -53,6 +54,7 @@ const ControlPanel: FC<ControlPanelProps> = ({}) => {
       />
 
       <RenderControl />
+      <DragAndDrop />
     </motion.div>
   );
 };

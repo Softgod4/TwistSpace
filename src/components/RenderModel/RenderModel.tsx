@@ -1,5 +1,5 @@
-import { FC, MutableRefObject, useRef } from "react";
-import { CameraHelper, Mesh, Object3D, Object3DEventMap } from "three";
+import { FC, useRef } from "react";
+import { CameraHelper, Mesh } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 import {
   useCameraControl,
@@ -36,7 +36,7 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
           minAzimuthAngle={-Math.PI / 4}
           minPolarAngle={Math.PI / 6}
           maxPolarAngle={Math.PI - Math.PI / 6}
-          enableZoom={true}
+          enableZoom={false}
         />
       ) : (
         ""
