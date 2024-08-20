@@ -6,6 +6,16 @@ type LightControlStore = {
   toggleLight: () => void;
 };
 
+type PerspectiveCameraControlProps = {
+  isPerspectiveCameraControlEnabled: boolean;
+  togglePerspectiveCameraControl: () => void;
+};
+
+type CameraControlStore = {
+  isCameraControlEnabled: boolean;
+  toggleCameraControl: () => void;
+};
+
 export const useLightControl = create<LightControlStore>((set) => ({
   isLightEnabled: true,
   toggleLight: () =>
@@ -15,10 +25,6 @@ export const useLightControl = create<LightControlStore>((set) => ({
 // ----------------
 
 // Стор для управления камерой на сцене
-type CameraControlStore = {
-  isCameraControlEnabled: boolean;
-  toggleCameraControl: () => void;
-};
 
 export const useCameraControl = create<CameraControlStore>((set) => ({
   isCameraControlEnabled: true,
@@ -29,10 +35,6 @@ export const useCameraControl = create<CameraControlStore>((set) => ({
 // ----------------
 
 // стор для управления перспективной камерой
-type PerspectiveCameraControlProps = {
-  isPerspectiveCameraControlEnabled: boolean;
-  togglePerspectiveCameraControl: () => void;
-};
 
 export const usePerspectiveCameraControl =
   create<PerspectiveCameraControlProps>((set) => ({
@@ -44,15 +46,40 @@ export const usePerspectiveCameraControl =
       })),
   }));
 
+// -----------------------------------------------------------------------------------------------------
+
+type CheckboxProps = PerspectiveCameraControlProps &
+  CameraControlStore &
+  LightControlStore;
+
+export const useCheckboxControl = create<CheckboxProps>((set) => ({
+  isPerspectiveCameraControlEnabled: true,
+  isCameraControlEnabled: true,
+  isLightEnabled: true,
+
+  togglePerspectiveCameraControl: () =>
+    set((state) => ({
+      isPerspectiveCameraControlEnabled:
+        !state.isPerspectiveCameraControlEnabled,
+    })),
+
+  toggleCameraControl: () =>
+    set((state) => ({ isCameraControlEnabled: !state.isCameraControlEnabled })),
+
+  toggleLight: () =>
+    set((state) => ({ isLightEnabled: !state.isLightEnabled })),
+}));
+
 // ----------------
 
-// Стор для управления возможностью зума
-type ZoomControlStore = {
-  isZoomEnabled: boolean;
-  toggleZoom: () => void;
+// стор для Input type Range
+
+type RangeInputProps = {
+  rangeValue: number;
+  setRangeValue: (value: number) => void;
 };
 
-export const useZoomControl = create<ZoomControlStore>((set) => ({
-  isZoomEnabled: true,
-  toggleZoom: () => set((state) => ({ isZoomEnabled: !state.isZoomEnabled })),
+export const RangeInputStore = create<RangeInputProps>((set) => ({
+  rangeValue: 30, // начальное значение
+  setRangeValue: (value) => set({ rangeValue: value }),
 }));

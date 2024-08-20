@@ -1,14 +1,15 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { CameraHelper, Mesh } from "three";
+import { CameraHelper } from "three";
 import { OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 import {
-  useCameraControl,
-  useLightControl,
-  usePerspectiveCameraControl,
+  RangeInputStore,
+  useCheckboxControl,
 } from "../../store/сontrolMesh.store";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { useUploadUrl } from "../../store/UploadUrl.store";
+import { motion } from "framer-motion-3d";
+
 interface RenderModelProps {}
 
 // i dont understand how to typify this..
@@ -16,12 +17,17 @@ type BoxGeometry = any;
 type Scene = any;
 
 const RenderModel: FC<RenderModelProps> = ({}) => {
-  const myMesh = useRef<Mesh>(null!);
   const camera: React.Ref<BoxGeometry> | undefined = useRef();
   useHelper(camera, CameraHelper);
-  const { isCameraControlEnabled } = useCameraControl();
-  const { isPerspectiveCameraControlEnabled } = usePerspectiveCameraControl();
-  const { isLightEnabled } = useLightControl();
+
+  const {
+    isLightEnabled,
+    isCameraControlEnabled,
+    isPerspectiveCameraControlEnabled,
+  } = useCheckboxControl();
+
+  const { rangeValue } = RangeInputStore();
+
   const [model, setModel] = useState<Scene | null>(null);
   const { StateUrl } = useUploadUrl();
 
@@ -46,13 +52,14 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         // костыль
         fov={!isPerspectiveCameraControlEnabled ? 25 : NaN}
       />
+
       {!isLightEnabled ? <ambientLight /> : ""}
       {!isCameraControlEnabled ? (
         <OrbitControls
           minAzimuthAngle={-Math.PI / 4}
           minPolarAngle={Math.PI / 6}
           maxPolarAngle={Math.PI - Math.PI / 6}
-          enableZoom={false}
+          enableZoom={true}
         />
       ) : (
         ""
@@ -63,9 +70,9 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         ""
       )}
       {currentModel ? (
-        <mesh>
+        <motion.mesh scale={rangeValue / 10}>
           <primitive object={currentModel} scale={2} position-y={-2} />
-        </mesh>
+        </motion.mesh>
       ) : (
         <p className="w-full h-full text-2xl text-white">Loading model...</p>
       )}
