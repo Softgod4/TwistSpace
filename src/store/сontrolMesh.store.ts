@@ -16,6 +16,11 @@ type CameraControlStore = {
   toggleCameraControl: () => void;
 };
 
+type BackgroundStoreProps = {
+  isBackgroundEnabled: boolean;
+  toggleBackground: () => void;
+};
+
 export const useLightControl = create<LightControlStore>((set) => ({
   isLightEnabled: true,
   toggleLight: () =>
@@ -63,6 +68,7 @@ export const useCheckboxControl = create<CheckboxProps>((set) => ({
         !state.isPerspectiveCameraControlEnabled,
     })),
 
+
   toggleCameraControl: () =>
     set((state) => ({ isCameraControlEnabled: !state.isCameraControlEnabled })),
 
@@ -75,11 +81,17 @@ export const useCheckboxControl = create<CheckboxProps>((set) => ({
 // стор для Input type Range
 
 type RangeInputProps = {
-  rangeValue: number;
-  setRangeValue: (value: number) => void;
+  scaleValue: number;
+  setScaleValue: (value: number) => void;
+
+  lightValue: number;
+  setLightValue: (value: number) => void;
 };
 
 export const RangeInputStore = create<RangeInputProps>((set) => ({
-  rangeValue: 30, // начальное значение
-  setRangeValue: (value) => set({ rangeValue: value }),
+  scaleValue: 10, // начальное значение
+  setScaleValue: (value) => set({ scaleValue: value }),
+
+  lightValue: 15, // начальное значение
+  setLightValue: (value) => set({ lightValue: value }),
 }));

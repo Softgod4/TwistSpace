@@ -34,7 +34,7 @@ const DragAndDrop: FC<DragAndDropProps> = ({}) => {
 
   return (
     <motion.div
-      className="w-full border-2 border-dotted border-[#333] hover:border-[#444] rounded mt-4 transition-all ease-in delay-75 flex justify-center items-center relative hover:brightness-125 bg-transparent cursor-copy"
+      className="w-full border-2 border-dotted border-[#333] hover:border-[#444] rounded mt-4 transition-all ease-in delay-75 flex justify-center items-center relative hover:brightness-125 bg-transparent"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onDragLeave={(e) => dragLeaveHandler(e)}
@@ -69,7 +69,7 @@ const DragAndDrop: FC<DragAndDropProps> = ({}) => {
             transition={{ duration: 0.5 }}
           />
         </span>
-        <p className="text-xs font-normal text-gray-400">
+        <p className="text-xs font-normal text-gray-400 text-center">
           or just click with the mouse (use <code>.glb</code> format)
         </p>
       </motion.label>

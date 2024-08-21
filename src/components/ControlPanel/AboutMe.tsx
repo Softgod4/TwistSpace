@@ -11,7 +11,7 @@ const AboutMe: FC<AboutMeProps> = ({ description }) => {
   const [hoverImage, setHoverImage] = useState(false);
 
   return (
-    <div className="flex justify-start items-center pb-5">
+    <div className="flex justify-start items-center pb-5 md:flex-row flex-col">
       {/* <img
           src={mouseEnter ? "/github-logo.webp" : "/avatar-github.jpeg"}
           alt="avatar"

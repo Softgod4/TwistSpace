@@ -26,7 +26,7 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
     isPerspectiveCameraControlEnabled,
   } = useCheckboxControl();
 
-  const { rangeValue } = RangeInputStore();
+  const { scaleValue, lightValue } = RangeInputStore();
 
   const [model, setModel] = useState<Scene | null>(null);
   const { StateUrl } = useUploadUrl();
@@ -65,12 +65,12 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         ""
       )}
       {!isLightEnabled ? (
-        <pointLight position={[1, 2, 5]} intensity={25.5} />
+        <pointLight position={[1, 2, 5]} intensity={lightValue / 5} />
       ) : (
         ""
       )}
       {currentModel ? (
-        <motion.mesh scale={rangeValue / 10}>
+        <motion.mesh scale={scaleValue / 10}>
           <primitive object={currentModel} scale={2} position-y={-2} />
         </motion.mesh>
       ) : (

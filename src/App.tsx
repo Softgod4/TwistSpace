@@ -4,6 +4,7 @@ import DefaultCanvas from "./components/DefaultCanvas/DefaultCanvas";
 import ControlPanel from "./components/ControlPanel/ControlPanel";
 import { Route, Switch } from "wouter";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import "./assets/Styles/global.scss";
 
 interface AppProps {}
 

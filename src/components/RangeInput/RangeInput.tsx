@@ -5,6 +5,7 @@ interface RangeInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   maxValue: number;
   StartValue: number;
   className: string;
+  id?: string | undefined;
 }
 
 const RangeInput: FC<RangeInputProps> = ({
@@ -12,12 +13,13 @@ const RangeInput: FC<RangeInputProps> = ({
   minValue,
   StartValue,
   className,
+  id,
   ...props
 }) => {
   return (
     <div className="relative mb-6 w-full">
       <input
-        id="labels-range-input"
+        id={id ? id : "labels-range-input"}
         type="range"
         min={minValue}
         max={maxValue}

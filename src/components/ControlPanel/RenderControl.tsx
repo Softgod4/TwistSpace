@@ -9,15 +9,9 @@ import RangeInput from "../RangeInput/RangeInput";
 interface RenderControlProps {}
 
 const RenderControl: FC<RenderControlProps> = ({}) => {
-  const {
-    toggleLight,
-    toggleCameraControl,
-    togglePerspectiveCameraControl,
-    isLightEnabled,
-    isCameraControlEnabled,
-    isPerspectiveCameraControlEnabled,
-  } = useCheckboxControl();
-  const { rangeValue, setRangeValue } = RangeInputStore();
+  const { toggleLight, toggleCameraControl, togglePerspectiveCameraControl } =
+    useCheckboxControl();
+  const { setScaleValue, setLightValue } = RangeInputStore();
 
   return (
     <>
@@ -28,7 +22,6 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
           description="includes the ability to rotate the camera around a 3D object"
           onChange={() => {
             toggleCameraControl();
-            console.log(isCameraControlEnabled);
           }}
         />
         <Checkbox
@@ -37,7 +30,6 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
           description="adds a visual representation of how the camera is facing the 3D object"
           onChange={() => {
             togglePerspectiveCameraControl();
-            console.log(isPerspectiveCameraControlEnabled);
           }}
         />
         <Checkbox
@@ -46,7 +38,6 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
           description="turns on the stage lights to illuminate the main subject"
           onChange={() => {
             toggleLight();
-            console.log(isLightEnabled);
           }}
         />
       </div>
@@ -56,11 +47,26 @@ const RenderControl: FC<RenderControlProps> = ({}) => {
             Scale
           </p>
           <RangeInput
-            minValue={10}
-            maxValue={50}
+            minValue={5}
+            maxValue={100}
             StartValue={10}
             onChange={(e) => {
-              setRangeValue(Number(e.target.value));
+              setScaleValue(Number(e.target.value));
+            }}
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+          />
+        </div>
+
+        <div className="flex justify-start items-center w-full">
+          <p className="font-medium text-white text-xl leading-none mr-6">
+            Light
+          </p>
+          <RangeInput
+            minValue={0}
+            maxValue={100}
+            StartValue={15}
+            onChange={(e) => {
+              setLightValue(Number(e.target.value));
             }}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
           />
