@@ -1,7 +1,7 @@
 <div align="center">
-# 🌩️ Twist Space
-![Logo](/public/logo.png)
-**_Spin, zoom, and enjoy your 3D models anywhere!_**
+<h1>🌩️ Twist Space</h1>
+<img src="/public/logo.png" width="312px" height="312px"/>
+<p>Spin, zoom, and enjoy your 3D models anywhere!</p>
 </div>
 
 ---
