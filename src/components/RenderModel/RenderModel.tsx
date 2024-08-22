@@ -65,7 +65,8 @@ const RenderModel: FC<RenderModelProps> = ({}) => {
         ""
       )}
       {!isLightEnabled ? (
-        <pointLight position={[1, 2, 5]} intensity={lightValue / 5} />
+        // <pointLight position={[1, 2, 5]} intensity={lightValue / 5} />
+        <rectAreaLight position={[1, 12, 12]} intensity={lightValue / 5} />
       ) : (
         ""
       )}
