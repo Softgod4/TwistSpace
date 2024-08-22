@@ -16,11 +16,6 @@ type CameraControlStore = {
   toggleCameraControl: () => void;
 };
 
-type BackgroundStoreProps = {
-  isBackgroundEnabled: boolean;
-  toggleBackground: () => void;
-};
-
 export const useLightControl = create<LightControlStore>((set) => ({
   isLightEnabled: true,
   toggleLight: () =>
